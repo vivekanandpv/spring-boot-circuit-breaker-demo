@@ -22,7 +22,7 @@ public class UpstreamApi {
     @GetMapping
     @CircuitBreaker(name = "upstream", fallbackMethod = "getFallback")
     public ResponseEntity<Map<String, String>> get() {
-        ResponseEntity<Book> responseEntity = restTemplate.getForEntity("/books", Book.class);
+        ResponseEntity<Book> responseEntity = restTemplate.getForEntity("/api/v1/downstream", Book.class);
         return ResponseEntity.ok(Map.of("book", responseEntity.getBody().toString()));
     }
 
